@@ -1,6 +1,6 @@
 {
   "name": "emby-webhook-mqtt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -12,7 +12,7 @@
     "docker:publish": "npm run docker:build && npm run docker:tag && npm run docker:push"
   },
   "dependencies": {
-    "@fastify/formbody": "^8.0.0",
+    "@fastify/formbody": "^7.4.0",
     "fastify": "^4.27.0",
     "mqtt": "^5.10.4"
   },
