@@ -1,0 +1,24 @@
+services:
+  emby-webhook-mqtt:
+    image: therebelrobot/emby-webhook-mqtt:1.0.0
+    container_name: emby-webhook-mqtt
+    restart: unless-stopped
+    ports:
+      - "8787:8787"
+    environment:
+      HTTP_HOST: "0.0.0.0"
+      HTTP_PORT: "8787"
+      HTTP_PATH: "/emby-webhook"
+
+      MQTT_URL: "mqtt://192.168.1.50:1883"     # your EMQX LAN addr
+      MQTT_QOS: "1"
+      TOPIC_PREFIX: "emby"
+
+      # If you enabled auth in EMQX:
+      # MQTT_USERNAME: "embybridge"
+      # MQTT_PASSWORD: "long-random"
+
+      # Optional shared secret (header x-emby-webhook-secret)
+      # WEBHOOK_SECRET: "another-long-random"
+
+      LOG_LEVEL: "info"

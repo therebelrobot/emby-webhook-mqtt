@@ -1,0 +1,23 @@
+{
+  "name": "emby-webhook-mqtt",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --target node22 --out-dir dist --minify",
+    "start": "node dist/index.js",
+    "docker:build": "docker build -t $npm_package_name:$npm_package_version .",
+    "docker:tag": "docker tag $npm_package_name:$npm_package_version $DOCKER_USER/$npm_package_name:$npm_package_version && docker tag $npm_package_name:$npm_package_version $DOCKER_USER/$npm_package_name:latest",
+    "docker:push": "docker push $DOCKER_USER/$npm_package_name:$npm_package_version && docker push $DOCKER_USER/$npm_package_name:latest",
+    "docker:publish": "npm run docker:build && npm run docker:tag && npm run docker:push"
+  },
+  "dependencies": {
+    "@fastify/formbody": "^8.0.0",
+    "fastify": "^4.27.0",
+    "mqtt": "^5.10.4"
+  },
+  "devDependencies": {
+    "tsup": "^8.1.0",
+    "typescript": "^5.7.3"
+  }
+}
